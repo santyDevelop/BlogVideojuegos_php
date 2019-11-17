@@ -10,4 +10,7 @@
     
     //Setear informacion que llega de la bbdd en utf-8
     mysqli_query($dbConection,"SET NAMES 'utf8");
+    
+    //Iniciar la sesion
+    session_start();
 ?>
