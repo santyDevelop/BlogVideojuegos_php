@@ -1,12 +1,29 @@
-<?php require_once 'alertLib.php';?>
-
 <!--BARRA LATERAL-->
 <aside id="sidebar">
-
+    <!--Mostrar usuario logeado-->
+    <?php if(isset($_SESSION['usuario'])): ?>  
+        <div id="usuarioLogeado" class="bloque">
+            <h3>Bienvenido, <?= $_SESSION['usuario']['nombre'].' '.$_SESSION['usuario']['apellidos']; ?></h3>
+            <!--Botones-->
+            <a href="" class="boton">Crear categorias</a>
+            <a href="" class="boton boton-verde">Crear entradas</a>
+            <a href="" class="boton boton-naranja">Mis datos</a>
+            <a href="Proyecto_php/funcionalidad/logout.php" class="boton boton-rojo">Cerrar Sesion</a> 
+        </div>
+    <?php endif; ?>     
+    
     <!--LOGIN-->
     <div id="login" class="bloque">
         <h3>Identificate</h3>
-        <form action="login.php" method="POST">
+        
+        <!--Mostrar mensajes de error de login-->
+        <?php if(isset($_SESSION['loginError'])): ?>  
+            <div class="alerta alerta-error">
+                <?= $_SESSION['loginError']; ?>
+            </div>
+        <?php endif; ?>
+        
+        <form action="Proyecto_php/funcionalidad/login.php" method="POST">
             <label for="email">Email</label>
             <input type="email" name="email"/>
 

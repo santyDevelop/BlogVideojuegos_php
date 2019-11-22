@@ -3,11 +3,16 @@
         //incluimos la conexion a la bbdd
         require_once '../includes/conexion.php';
             
+        //Si se ha cerrado sesion, se vuelve a abrir
+        if(isset($_SESSION)){
+            session_start();
+        }
+        
         //recoger los valores de formulario de registro
-        $nombre = isset($_POST['name']) ? $_POST['name'] : false;
-        $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
-        $email = isset($_POST['email']) ? $_POST['email'] : false;
-        $password = isset($_POST['password']) ? $_POST['password'] : false;
+        $nombre = isset($_POST['name']) ? mysqli_real_escape_string($dbConection, $_POST['name']) : false;
+        $apellidos = isset($_POST['apellidos']) ? mysqli_real_escape_string($dbConection,$_POST['apellidos']) : false;
+        $email = isset($_POST['email']) ? mysqli_real_escape_string($dbConection,trim($_POST['email'])) : false;
+        $password = isset($_POST['password']) ? mysqli_real_escape_string($dbConection,$_POST['password']) : false;
         
         //validar datos antes de guardarlos en la base de datos
         

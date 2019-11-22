@@ -19,4 +19,16 @@
             unset($_SESSION['registroExito']);
         }
     }
+    
+    function conseguirCategorias($dbConection){
+        $querySql = "SELECT * FROM categorias ORDER BY id ASC;";
+        $queryResult = mysqli_query($dbConection, $querySql);
+        
+        $categorias = array();
+        if($queryResult && mysqli_num_rows($queryResult) >= 1){
+            $categorias = $queryResult;
+        }
+        
+        return $categorias;
+    }
 ?>
