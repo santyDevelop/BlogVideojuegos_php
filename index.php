@@ -4,38 +4,27 @@
 <!--CAJA PRINCIPAL-->
 <div id="principal">
     <h1>Ultimas entradas</h1>
-    <article class="entrada">
-        <a href="">
-            <h2>Titulo de entrada</h2>
-            <p>
-                Vivamus eleifend enim tortor, ut consectetur enim congue laoreet. Aliquam mattis imperdiet urna eu egestas. Donec ut convallis ex. Nullam luctus eget purus ut pulvinar. Donec eget nulla velit. Vestibulum vehicula massa et magna mattis rhoncus. In condimentum at tortor a porttitor. Nunc semper vestibulum nulla, ut cursus arcu efficitur et.
-            </p>
-        </a>
-    </article>
-    <article class="entrada">
-        <a href="">
-            <h2>Titulo de entrada</h2>
-            <p>
-                Vivamus eleifend enim tortor, ut consectetur enim congue laoreet. Aliquam mattis imperdiet urna eu egestas. Donec ut convallis ex. Nullam luctus eget purus ut pulvinar. Donec eget nulla velit. Vestibulum vehicula massa et magna mattis rhoncus. In condimentum at tortor a porttitor. Nunc semper vestibulum nulla, ut cursus arcu efficitur et.
-            </p>
-        </a>
-    </article>
-    <article class="entrada">
-        <a href="">
-            <h2>Titulo de entrada</h2>
-            <p>
-                Vivamus eleifend enim tortor, ut consectetur enim congue laoreet. Aliquam mattis imperdiet urna eu egestas. Donec ut convallis ex. Nullam luctus eget purus ut pulvinar. Donec eget nulla velit. Vestibulum vehicula massa et magna mattis rhoncus. In condimentum at tortor a porttitor. Nunc semper vestibulum nulla, ut cursus arcu efficitur et.
-            </p>
-        </a>
-    </article>
-    <article class="entrada">
-        <a href="">
-            <h2>Titulo de entrada</h2>
-            <p>
-                Vivamus eleifend enim tortor, ut consectetur enim congue laoreet. Aliquam mattis imperdiet urna eu egestas. Donec ut convallis ex. Nullam luctus eget purus ut pulvinar. Donec eget nulla velit. Vestibulum vehicula massa et magna mattis rhoncus. In condimentum at tortor a porttitor. Nunc semper vestibulum nulla, ut cursus arcu efficitur et.
-            </p>
-        </a>
-    </article>
+    
+    <!--Ultimas entradas desde funcion-->
+    <?php 
+        $ultimasEntradas = conseguirUltimasEntradas($dbConection);        
+        if (!empty($ultimasEntradas)):
+            while ($entrada = mysqli_fetch_assoc($ultimasEntradas)):
+                
+    ?>
+                <article class="entrada">
+                    <a href="">
+                        <h2><?= $entrada['titulo'] ?></h2>
+                        <span class="fecha"><?= $entrada['categoria']." | ".$entrada['fecha'] ?></span>
+                        <p>
+                            <?= substr($entrada['descripcion'], 0, 150)." ..." ?>
+                        </p>
+                    </a>
+                </article>
+    <?php
+            endwhile;
+        endif;
+    ?>  
 
     <div id="ver-todas">
         <a href="">Ver todas las entradas</a>

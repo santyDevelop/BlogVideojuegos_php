@@ -26,12 +26,15 @@
                     </li>
                     <?php 
                         $categorias = conseguirCategorias($dbConection);
-                        while($categoria = mysqli_fetch_assoc($categorias)):
+                        if(!empty($categorias)):
+                            while($categoria = mysqli_fetch_assoc($categorias)):
                     ?>
-                        <li>
-                            <a href="categoria.php?id=<?=$categoria['id']?>"><?=$categoria['nombre']?></a>
-                        </li>
-                    <?php endwhile;?>
+                                <li>
+                                    <a href="categoria.php?id=<?=$categoria['id']?>"><?=$categoria['nombre']?></a>
+                                </li>
+                    <?php
+                            endwhile;
+                        endif;?>
                 </ul>
             </nav>
             <div class="clearfix"></div>
