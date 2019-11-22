@@ -23,6 +23,21 @@ body{
     background: url(../img/cubes.png) #F4F4F4;
 }
 
+/*//Alertas*/
+.alerta{
+    padding: 5px;
+    font-size: 14px;
+    color: white;
+    background:green;
+    box-shadow: 0px 1px 3px #ccc;
+    margin-bottom: 15px;
+    border-radius: 2px;
+}
+
+.alerta-error{
+    background: red;
+}
+
 /*CABECERA*/
 #cabecera{
     width: 85%;
@@ -144,7 +159,8 @@ input[type='password']{
 
 /*Estilos de BOTONES*/
 input[type='button'],
-input[type='submit']{
+input[type='submit'],
+.boton{
     margin-top: 5px;
     margin-bottom: 5px;
     display: block;
@@ -153,6 +169,23 @@ input[type='submit']{
     background: #007ee5;
     cursor:pointer;
     padding: 7px;
+}
+
+.boton{
+    text-align: center;
+    width: 130px;
+}
+
+.boton-naranja{
+    background: orange;
+}
+
+.boton-verde{
+    background: green;
+}
+
+.boton-rojo{
+    background: red;
 }
 
 /*CONTENIDO PRINCIPAL*/
