@@ -3,11 +3,11 @@
 
 <!--CAJA PRINCIPAL-->
 <div id="principal">
-    <h1>Ultimas entradas</h1>
+    <h1>Lista de entradas</h1>
     
-    <!--Ultimas entradas desde funcion-->
+    <!--lista entradas desde funcion-->
     <?php 
-        $ultimasEntradas = conseguirUltimasEntradas($dbConection);        
+        $ultimasEntradas = conseguirTodasEntradas($dbConection);        
         if (!empty($ultimasEntradas)):
             while ($entrada = mysqli_fetch_assoc($ultimasEntradas)):
                 
@@ -26,9 +26,6 @@
         endif;
     ?>  
 
-    <div id="ver-todas">
-        <a href="entradas.php">Ver todas las entradas</a>
-    </div>
 </div>    
 <!--FIN CAJA PRINCIPAL-->
 

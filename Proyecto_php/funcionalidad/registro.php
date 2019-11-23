@@ -4,7 +4,7 @@
         require_once '../includes/conexion.php';
             
         //Si se ha cerrado sesion, se vuelve a abrir
-        if(isset($_SESSION)){
+        if(!isset($_SESSION)){
             session_start();
         }
         
