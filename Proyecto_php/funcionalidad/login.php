@@ -17,8 +17,9 @@
         $queryLogin = mysqli_query($dbConection, $querySelect);
         
         if($queryLogin && mysqli_num_rows($queryLogin) == 1){
-            $usuario = mysqli_fetch_assoc($queryLogin);
             
+            $usuario = mysqli_fetch_assoc($queryLogin);
+                        
             //Comprobar la contraseña
             $passVerify = password_verify($password, $usuario['password']);
             
@@ -27,9 +28,12 @@
                 $_SESSION['usuario'] = $usuario;
                 
             }else{
-                //si algo falla, enviar una sesion con el fallo
+                //Si no coincide la password, enviar una sesion con el fallo
                 $_SESSION['loginError'] = "Login incorrecto";
             }
+        }else{
+            //Si no existe el usuario, enviar una sesion con el fallo
+            $_SESSION['loginError'] = "El usuario no existe";
         }
     }
        

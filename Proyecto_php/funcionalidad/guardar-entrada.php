@@ -34,12 +34,29 @@
         
         //GUARDAR DATOS EN BBDD
         if(count($errores) == 0){
-            $querySql = "INSERT INTO entradas VALUES(null, '$usuarioId', '$categoria', '$titulo', '$descripcion', CURDATE());";
+            if(isset($_GET['edicion'])){
+                $id_entrada = $_GET['edicion'];
+                
+                //ACTUALIZAR ENTRADA EN LA BBDD            
+                $querySql = "UPDATE entradas SET ".
+                            "id_categoria = '$categoria', ".
+                            "titulo = '$titulo', ".
+                            "descripcion = '$descripcion' ".                           
+                            "WHERE id = '$id_entrada' AND id_usuario = '$usuarioId';";
+            }else{            
+                $querySql = "INSERT INTO entradas VALUES(null, '$usuarioId', '$categoria', '$titulo', '$descripcion', CURDATE());";
+            }
+            
             $queryResult = mysqli_query($dbConection, $querySql);
+            
             header('Location: ../../index.php');
         }else{
             $_SESSION['errorEntrada'] = $errores;
-            header('Location: ../../crear-entrada.php');
+            if(isset($_GET['edicion'])){
+                header('Location: ../../editar-entrada.php?id='.$_GET['edicion']);
+            }else{
+                header('Location: ../../crear-entrada.php');
+            }            
         }
     }
     

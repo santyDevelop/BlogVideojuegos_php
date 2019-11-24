@@ -73,8 +73,10 @@
     }
     
     function conseguirEntrada($dbConection,$id){
-        $querySql = "SELECT e.*, c.nombre AS 'categoria' FROM entradas e ".
+        $querySql = "SELECT e.*, c.nombre AS 'categoria', CONCAT(u.nombre,' ', u.apellidos) AS 'usuario' ".
+                    "FROM entradas e ".
                     "INNER JOIN categorias c ON e.id_categoria = c.id ".
+                    "INNER JOIN usuarios u ON e.id_usuario = u.id ".
                     "WHERE e.id = '$id';";
         $queryResult = mysqli_query($dbConection, $querySql);
         
@@ -85,6 +87,11 @@
             }
         }        
         return $entrada;
+    }
+    
+    function buscarEntradas($dbConection, $busqueda){
+        $where = "WHERE e.titulo LIKE '%$busqueda%';";        
+        return conseguirEntradas($dbConection, $where);
     }
     
     function conseguirEntradas($dbConection, $sqlCode = null){
@@ -105,5 +112,5 @@
         }
         
         return $entradas;
-    }
+    }   
 ?>

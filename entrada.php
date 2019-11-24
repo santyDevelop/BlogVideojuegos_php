@@ -11,10 +11,17 @@
         <a href="categoria.php?id=<?=$entradaActual['id_categoria']?>">
             <h2><?= $entradaActual['categoria']?></h2>
         </a>        
-        <h4><?= $entradaActual['fecha']?></h4>
+        <h4><?= $entradaActual['fecha']?> | <?= $entradaActual['usuario']?></h4>
         <p>
             <?= $entradaActual['descripcion']?>
         </p>
+        </br>
+        <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario']['id'] == $entradaActual['id_usuario']):?>
+            <!--Botones-->
+            <a href="editar-entrada.php?id=<?=$entradaActual['id']?>" class="boton">Editar entrada</a>
+            <a href="Proyecto_php/funcionalidad/borrar-entrada.php?id=<?=$entradaActual['id']?>" class="boton boton-verde">Borrar entrada</a>
+        <?php endif;?>
+
     </article>
     
 </div>    
